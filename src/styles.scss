@@ -31,8 +31,9 @@
 
 body, html {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: var(--font-primary);
   background-color: #0b0c10;
   color: #ffffff;
@@ -225,14 +226,13 @@ body, html {
 .entrance-container {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   z-index: 5;
-  padding: 10px;
+  padding: 40px 10px;
 }
 
 /* Friendly Call Banner */
@@ -272,7 +272,7 @@ body, html {
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* Ryder's Physical Pup Pad Console Frame */
+/* Ryder's Physical Pup Pad Console Frame (Unified Sizing) */
 .pup-pad-frame {
   position: relative;
   background-color: #0057b7;
@@ -285,50 +285,33 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: max-width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-              max-height 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-              width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-              height 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-              transform 0.4s ease-out;
-  transform-origin: center center;
-}
-
-/* State-based layout sizes for the physical tablet */
-.calling-frame {
-  width: 80vw;
-  max-width: 440px;
-  height: 50vh;
-  max-height: 270px;
-  padding: 12px;
-  cursor: pointer;
-}
-
-.briefing-frame {
   width: 96vw;
   max-width: 950px;
   height: 90vh;
   max-height: 570px;
   padding: 14px 45px 14px 14px; /* Controller margin on right */
+  transform-origin: center center;
 }
 
-/* Vibration animation for calling mode */
+/* Vibration animation for calling mode - gentler translation only, no cheap rotation */
 .pup-pad-frame.vibrating {
-  animation: vibrateConsole 0.6s infinite linear;
+  animation: vibrateConsole 0.8s infinite linear;
 }
 
 @keyframes vibrateConsole {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  10% { transform: translate(-2px, -1px) rotate(-0.5deg); }
-  20% { transform: translate(1px, 2px) rotate(0.5deg); }
-  30% { transform: translate(-1px, -2px) rotate(-0.5deg); }
-  40% { transform: translate(2px, 1px) rotate(0.5deg); }
-  50% { transform: translate(-2px, 2px) rotate(-0.5deg); }
-  60% { transform: translate(1px, -1px) rotate(0.5deg); }
-  70% { transform: translate(-1px, 2px) rotate(-0.5deg); }
-  80% { transform: translate(2px, -2px) rotate(0.5deg); }
-  90% { transform: translate(-2px, -1px) rotate(-0.5deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-1px, -1px); }
+  20% { transform: translate(1px, 1px); }
+  30% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 0px); }
+  60% { transform: translate(1px, 1px); }
+  70% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, -1px); }
+  90% { transform: translate(-1px, 1px); }
+  100% { transform: translate(0, 0); }
 }
+
 
 /* Physical Corner Accents */
 .pad-corner {
@@ -839,15 +822,7 @@ body, html {
     font-size: 0.95rem;
     padding: 0 10px;
   }
-  .calling-frame {
-    width: 85vw;
-    max-width: 320px;
-    height: 42vh;
-    max-height: 210px;
-    border-width: 8px;
-    border-radius: 25px;
-  }
-  .briefing-frame {
+  .pup-pad-frame {
     width: 98vw;
     height: 94vh;
     border-width: 8px;
@@ -929,7 +904,7 @@ body, html {
 }
 
 @media (max-height: 450px) {
-  .briefing-frame {
+  .pup-pad-frame {
     height: 96vh;
     border-width: 8px;
     padding-right: 35px;

@@ -33,9 +33,7 @@ import { AudioService } from '../../../../core/services/audio.service';
 
       <!-- Ryder's Physical Pup Pad Console (vibrates in calling mode) -->
       <div class="pup-pad-frame" 
-           [class.vibrating]="isRinging && state === 'calling'"
-           [class.calling-frame]="state === 'calling'"
-           [class.briefing-frame]="state === 'briefing'">
+           [class.vibrating]="isRinging && state === 'calling'">
         
         <!-- Physical Red Bezel Corners -->
         <div class="pad-corner corner-tl"></div>
@@ -231,14 +229,13 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngAfterViewInit(): void {
-    // Animate the physical Pup Pad entering from the bottom with a bouncy spring
+    // Animate the physical Pup Pad entering cleanly and smoothly from the bottom at 1.0 scale
     anime({
       targets: '.pup-pad-frame',
       translateY: ['100vh', '0px'],
-      scale: [0.1, 0.65],
       opacity: [0, 1],
-      easing: 'spring(1, 80, 12, 0)',
-      duration: 1000,
+      easing: 'easeOutQuart',
+      duration: 1200,
       complete: () => {
         // Start physical console vibration after entry completes
         this.isRinging = true;
@@ -263,15 +260,12 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
     // Detach pulse loop animation
     anime.remove('.shield-farid-btn');
 
-    // Smoothly expand the physical console frame to take over the screen
-    anime.timeline({
-      easing: 'easeOutElastic(1, 0.85)',
-      duration: 1100
-    })
-    .add({
+    // Subtle tactile click scale bounce when answering
+    anime({
       targets: '.pup-pad-frame',
-      scale: 1,
-      duration: 800,
+      scale: [1, 0.96, 1],
+      easing: 'easeInOutQuad',
+      duration: 300,
       complete: () => {
         // Toggle template state to show briefing contents inside the screen
         this.state = 'briefing';
