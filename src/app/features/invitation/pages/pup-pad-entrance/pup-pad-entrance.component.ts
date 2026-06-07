@@ -153,7 +153,7 @@ import { AudioService } from '../../../../core/services/audio.service';
                   <div class="bubble-tail"></div>
                   <p>{{ pupSpeeches['chase'].text }}</p>
                 </div>
-                <img src="assets/chase-full.png" class="character-pup character-chase" alt="Chase Paw Patrol" (click)="onPupClick('chase', '¡Ayuda a nuestro pequeño cachorro a cumplir sus sueños dejando tu regalo en efectivo en la torre de control! 👮‍♂️💙')">
+                <img src="assets/chase-full.png" class="character-pup character-chase" alt="Chase Paw Patrol" (click)="onPupClick('chase', '¡Tu regalo en efectivo es bienvenido en la torre! 👮‍♂️💙')">
               </div>
 
               <!-- Marshall -->
@@ -165,7 +165,7 @@ import { AudioService } from '../../../../core/services/audio.service';
                   <div class="bubble-tail"></div>
                   <p>{{ pupSpeeches['marshall'].text }}</p>
                 </div>
-                <img src="assets/marshall.png" class="character-pup character-marshall" alt="Marshall Paw Patrol" (click)="onPupClick('marshall', 'En la entrada encontrarás un buzón especial para que puedas dejar tu detalle en forma cómoda. ¡Gracias por ser parte de su tripulación! 🚒🔥')">
+                <img src="assets/marshall.png" class="character-pup character-marshall" alt="Marshall Paw Patrol" (click)="onPupClick('marshall', '¡En la entrada verás un buzón especial para sobres! 🚒🔥')">
               </div>
 
               <!-- Rubble -->
@@ -207,11 +207,11 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
 
   pupSpeeches: { [key: string]: { text: string; visible: boolean } } = {
     chase: {
-      text: '¡Ayuda a nuestro pequeño cachorro a cumplir sus sueños dejando tu regalo en efectivo en la torre de control!',
+      text: '¡Tu regalo en efectivo es bienvenido en la torre! 👮‍♂️💙',
       visible: true
     },
     marshall: {
-      text: 'En la entrada encontrarás un buzón especial para que puedas dejar tu detalle en forma cómoda. ¡Gracias por ser parte de su tripulación!',
+      text: '¡En la entrada verás un buzón especial para sobres! 🚒🔥',
       visible: true
     },
     rubble: {
