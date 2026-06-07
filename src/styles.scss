@@ -568,6 +568,11 @@ body, html {
   text-align: center;
   margin-top: 2px;
   letter-spacing: 0.5px;
+  text-shadow: 
+    1.5px 1.5px 0px #ffffff,
+    -1.5px -1.5px 0px #ffffff,  
+    1.5px -1.5px 0px #ffffff,
+    -1.5px 1.5px 0px #ffffff;
 }
 
 .horizontal-divider-blue {
@@ -600,6 +605,11 @@ body, html {
   font-size: 1.25rem;
   color: #1c2d5a;
   letter-spacing: 1px;
+  text-shadow: 
+    1px 1px 0px #ffffff,
+    -1px -1px 0px #ffffff,  
+    1px -1px 0px #ffffff,
+    -1px 1px 0px #ffffff;
 }
 
 .number-custom {
@@ -611,13 +621,13 @@ body, html {
 }
 
 .text-outline-blue {
-  color: #0093e0;
+  color: var(--paw-blue);
   text-shadow: 
     5px 5px 0px #1c2d5a,
-    -2px -2px 0px #ffffff,  
-    2px -2px 0px #ffffff,
-    -2px 2px 0px #ffffff,
-    2px 2px 0px #ffffff;
+    -2.5px -2.5px 0px #ffffff,  
+    2.5px -2.5px 0px #ffffff,
+    -2.5px 2.5px 0px #ffffff,
+    2.5px 2.5px 0px #ffffff;
 }
 
 /* Location Card with Maps link */
@@ -626,7 +636,7 @@ body, html {
   align-items: center;
   justify-content: center;
   gap: 15px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.85);
   border: 3px dashed #1c2d5a;
   border-radius: 20px;
   padding: 10px 22px;

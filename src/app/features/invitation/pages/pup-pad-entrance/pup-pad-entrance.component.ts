@@ -137,9 +137,9 @@ import { AudioService } from '../../../../core/services/audio.service';
                    [style.transform]="'translate(' + pupPositions['skye'].x + 'px, ' + pupPositions['skye'].y + 'px)'"
                    (mousedown)="onDragStart($event, 'skye')"
                    (touchstart)="onDragStart($event, 'skye')">
-                <div class="speech-bubble-pup skye-bubble" [class.visible]="activePup === 'skye'">
+                <div class="speech-bubble-pup skye-bubble" [class.visible]="pupSpeeches['skye'].visible">
                   <div class="bubble-tail"></div>
-                  <p>{{ activeSpeechBubbleText }}</p>
+                  <p>{{ pupSpeeches['skye'].text }}</p>
                 </div>
                 <img src="assets/skye.png" class="character-pup character-skye" alt="Skye Paw Patrol" (click)="onPupClick('skye', '¡Este cachorro va a volar! 🚁💖')">
               </div>
@@ -149,11 +149,11 @@ import { AudioService } from '../../../../core/services/audio.service';
                    [style.transform]="'translate(' + pupPositions['chase'].x + 'px, ' + pupPositions['chase'].y + 'px)'"
                    (mousedown)="onDragStart($event, 'chase')"
                    (touchstart)="onDragStart($event, 'chase')">
-                <div class="speech-bubble-pup" [class.visible]="activePup === 'chase'">
+                <div class="speech-bubble-pup" [class.visible]="pupSpeeches['chase'].visible">
                   <div class="bubble-tail"></div>
-                  <p>{{ activeSpeechBubbleText }}</p>
+                  <p>{{ pupSpeeches['chase'].text }}</p>
                 </div>
-                <img src="assets/chase-full.png" class="character-pup character-chase" alt="Chase Paw Patrol" (click)="onPupClick('chase', '¡Acepta esta misión para divertirte! 👮‍♂️💙')">
+                <img src="assets/chase-full.png" class="character-pup character-chase" alt="Chase Paw Patrol" (click)="onPupClick('chase', '¡Ayuda a nuestro pequeño cachorro a cumplir sus sueños dejando tu regalo en efectivo en la torre de control! 👮‍♂️💙')">
               </div>
 
               <!-- Marshall -->
@@ -161,11 +161,11 @@ import { AudioService } from '../../../../core/services/audio.service';
                    [style.transform]="'translate(' + pupPositions['marshall'].x + 'px, ' + pupPositions['marshall'].y + 'px)'"
                    (mousedown)="onDragStart($event, 'marshall')"
                    (touchstart)="onDragStart($event, 'marshall')">
-                <div class="speech-bubble-pup" [class.visible]="activePup === 'marshall'">
+                <div class="speech-bubble-pup" [class.visible]="pupSpeeches['marshall'].visible">
                   <div class="bubble-tail"></div>
-                  <p>{{ activeSpeechBubbleText }}</p>
+                  <p>{{ pupSpeeches['marshall'].text }}</p>
                 </div>
-                <img src="assets/marshall.png" class="character-pup character-marshall" alt="Marshall Paw Patrol" (click)="onPupClick('marshall', '¡Listo para el rescate rojo! 🚒🔥')">
+                <img src="assets/marshall.png" class="character-pup character-marshall" alt="Marshall Paw Patrol" (click)="onPupClick('marshall', 'En la entrada encontrarás un buzón especial para que puedas dejar tu detalle en forma cómoda. ¡Gracias por ser parte de su tripulación! 🚒🔥')">
               </div>
 
               <!-- Rubble -->
@@ -173,9 +173,9 @@ import { AudioService } from '../../../../core/services/audio.service';
                    [style.transform]="'translate(' + pupPositions['rubble'].x + 'px, ' + pupPositions['rubble'].y + 'px)'"
                    (mousedown)="onDragStart($event, 'rubble')"
                    (touchstart)="onDragStart($event, 'rubble')">
-                <div class="speech-bubble-pup" [class.visible]="activePup === 'rubble'">
+                <div class="speech-bubble-pup" [class.visible]="pupSpeeches['rubble'].visible">
                   <div class="bubble-tail"></div>
-                  <p>{{ activeSpeechBubbleText }}</p>
+                  <p>{{ pupSpeeches['rubble'].text }}</p>
                 </div>
                 <img src="assets/rubble.png" class="character-pup character-rubble" alt="Rubble Paw Patrol" (click)="onPupClick('rubble', '¡Rubble a toda marcha! 🛠️💛')">
               </div>
@@ -185,9 +185,9 @@ import { AudioService } from '../../../../core/services/audio.service';
                    [style.transform]="'translate(' + pupPositions['rocky'].x + 'px, ' + pupPositions['rocky'].y + 'px)'"
                    (mousedown)="onDragStart($event, 'rocky')"
                    (touchstart)="onDragStart($event, 'rocky')">
-                <div class="speech-bubble-pup" [class.visible]="activePup === 'rocky'">
+                <div class="speech-bubble-pup" [class.visible]="pupSpeeches['rocky'].visible">
                   <div class="bubble-tail"></div>
-                  <p>{{ activeSpeechBubbleText }}</p>
+                  <p>{{ pupSpeeches['rocky'].text }}</p>
                 </div>
                 <img src="assets/rocky.png" class="character-pup character-rocky" alt="Rocky Paw Patrol" (click)="onPupClick('rocky', '¡Verde significa ir! ♻️💚')">
               </div>
@@ -204,6 +204,29 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
 
   activePup: 'chase' | 'marshall' | 'rubble' | 'rocky' | 'skye' | null = null;
   activeSpeechBubbleText: string = '¡Acepta esta misión para divertirte! 👮‍♂️💙';
+
+  pupSpeeches: { [key: string]: { text: string; visible: boolean } } = {
+    chase: {
+      text: '¡Ayuda a nuestro pequeño cachorro a cumplir sus sueños dejando tu regalo en efectivo en la torre de control!',
+      visible: true
+    },
+    marshall: {
+      text: 'En la entrada encontrarás un buzón especial para que puedas dejar tu detalle en forma cómoda. ¡Gracias por ser parte de su tripulación!',
+      visible: true
+    },
+    rubble: {
+      text: '¡Rubble a toda marcha! 🛠️💛',
+      visible: false
+    },
+    rocky: {
+      text: '¡Verde significa ir! ♻️💚',
+      visible: false
+    },
+    skye: {
+      text: '¡Este cachorro va a volar! 🚁💖',
+      visible: false
+    }
+  };
 
   // Draggable Coordinate Tracker
   pupPositions: { [key: string]: { x: number, y: number } } = {
@@ -222,7 +245,7 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
 
   constructor(
     private audioService: AudioService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Calling state is active initially
@@ -339,10 +362,12 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
       loop: true
     });
 
-    // Auto-display Chase's speech bubble after 2 seconds to draw interaction
+    // Auto-display Chase's and Marshall's speech bubbles after 2 seconds
     setTimeout(() => {
-      if (this.state === 'briefing' && !this.activePup) {
-        this.triggerPupSpeech('chase', '¡Acepta esta misión para divertirte! 👮‍♂️💙');
+      if (this.state === 'briefing') {
+        this.pupSpeeches['chase'].visible = true;
+        this.pupSpeeches['marshall'].visible = true;
+        this.audioService.playBark();
       }
     }, 2000);
   }
@@ -401,19 +426,14 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   triggerPupSpeech(pup: 'chase' | 'marshall' | 'rubble' | 'rocky' | 'skye', text: string): void {
-    if (this.activePup === pup && this.activeSpeechBubbleText === text) {
-      this.activePup = null;
-      return;
-    }
-
     this.audioService.playBark();
-    this.activeSpeechBubbleText = text;
-    this.activePup = pup;
+    this.pupSpeeches[pup].text = text;
+    this.pupSpeeches[pup].visible = !this.pupSpeeches[pup].visible;
 
     // Bounce clicked puppy using anime.js
     const targetClass = `.character-${pup}`;
     anime.remove(targetClass);
-    
+
     if (pup === 'skye') {
       anime({
         targets: targetClass,
@@ -445,7 +465,7 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
           if (pup === 'marshall') floatDur = 2100;
           if (pup === 'rubble') floatDur = 1900;
           if (pup === 'rocky') floatDur = 2050;
-          
+
           anime({
             targets: targetClass,
             translateY: [0, -6, 0],
