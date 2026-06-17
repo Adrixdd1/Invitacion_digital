@@ -116,7 +116,7 @@ import { AudioService } from '../../../../core/services/audio.service';
                 
                 <div class="anim-item time-column">
                   <span class="label-custom font-rubik-bold">HORA</span>
-                  <span class="number-custom text-outline-blue">3:00</span>
+                  <span class="number-custom text-outline-blue">3:30</span>
                   <span class="label-custom font-rubik-bold">P.M.</span>
                 </div>
               </main>
@@ -225,9 +225,7 @@ import { AudioService } from '../../../../core/services/audio.service';
             <div class="skye-modal-divider"></div>
             
             <div class="skye-modal-message font-primary">
-              <p class="modal-paragraph">¡Ayuda a nuestro pequeño cachorro a cumplir sus sueños dejando tu regalo en efectivo en la torre de control! 👮‍♂️💙</p>
-              <div class="paragraph-spacer"></div>
-              <p class="modal-paragraph">En la entrada encontrarás un buzón especial para que puedas dejar tu detalle en forma cómoda. ¡Gracias por ser parte de su tripulación! 🚒🔥</p>
+              <p class="modal-paragraph">"¡Ayuda a nuestro pequeño cachorro a cumplir sus sueños con una misión especial! Si deseas, puedes dejar tu regalo en efectivo en el buzón especial de la Torre de Control en la entrada. Pero si prefieres, ¡cualquier otro detalle o juguete físico también será recibido con mucha alegría y ladridos de emoción! ¡Gracias por ser parte de su tripulación!"</p>
             </div>
           </div>
           
