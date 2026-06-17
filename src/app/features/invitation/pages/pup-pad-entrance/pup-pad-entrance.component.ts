@@ -137,11 +137,18 @@ import { AudioService } from '../../../../core/services/audio.service';
                    [style.transform]="'translate(' + pupPositions['skye'].x + 'px, ' + pupPositions['skye'].y + 'px)'"
                    (mousedown)="onDragStart($event, 'skye')"
                    (touchstart)="onDragStart($event, 'skye')">
-                <div class="speech-bubble-pup skye-bubble" [class.visible]="pupSpeeches['skye'].visible">
+                <div class="speech-bubble-pup skye-bubble clickable-bubble" 
+                     [class.visible]="pupSpeeches['skye'].visible"
+                     (click)="openSkyeModal($event)">
                   <div class="bubble-tail"></div>
-                  <p>{{ pupSpeeches['skye'].text }}</p>
+                  <p>
+                    {{ pupSpeeches['skye'].text }}
+                    <span class="gift-icon-badge">
+                      <i class="fa-solid fa-gift"></i>
+                    </span>
+                  </p>
                 </div>
-                <img src="assets/skye.png" class="character-pup character-skye" alt="Skye Paw Patrol" (click)="onPupClick('skye', '¡Este cachorro va a volar! 🚁💖')">
+                <img src="assets/skye.png" class="character-pup character-skye" alt="Skye Paw Patrol" (click)="onPupClick('skye', '¿No sabes qué regalar?')">
               </div>
 
               <!-- Chase -->
@@ -153,7 +160,7 @@ import { AudioService } from '../../../../core/services/audio.service';
                   <div class="bubble-tail"></div>
                   <p>{{ pupSpeeches['chase'].text }}</p>
                 </div>
-                <img src="assets/chase-full.png" class="character-pup character-chase" alt="Chase Paw Patrol" (click)="onPupClick('chase', '¡Tu regalo en efectivo es bienvenido en la torre! 👮‍♂️💙')">
+                <img src="assets/chase-full.png" class="character-pup character-chase" alt="Chase Paw Patrol" (click)="onPupClick('chase', '¡Vamos a divertirnos! 🎉🐶')">
               </div>
 
               <!-- Marshall -->
@@ -165,7 +172,7 @@ import { AudioService } from '../../../../core/services/audio.service';
                   <div class="bubble-tail"></div>
                   <p>{{ pupSpeeches['marshall'].text }}</p>
                 </div>
-                <img src="assets/marshall.png" class="character-pup character-marshall" alt="Marshall Paw Patrol" (click)="onPupClick('marshall', '¡En la entrada verás un buzón especial para sobres! 🚒🔥')">
+                <img src="assets/marshall.png" class="character-pup character-marshall" alt="Marshall Paw Patrol" (click)="onPupClick('marshall', '¡Listo para jugar! 🚒🔥')">
               </div>
 
               <!-- Rubble -->
@@ -195,6 +202,34 @@ import { AudioService } from '../../../../core/services/audio.service';
           </div>
         </div>
       </div>
+      
+      <!-- Skye's Gift Modal -->
+      <div class="skye-modal-overlay" *ngIf="showSkyeModal" (click)="closeSkyeModal()">
+        <div class="skye-modal-card" (click)="$event.stopPropagation()">
+          <button class="skye-modal-close-btn" (click)="closeSkyeModal()">&times;</button>
+          
+          <div class="skye-badge-wrapper">
+            <div class="skye-badge">
+              <i class="fa-solid fa-gift"></i>
+            </div>
+          </div>
+          
+          <div class="skye-modal-body">
+            <h3 class="skye-modal-title font-display">SUGERENCIA DE REGALOS</h3>
+            <div class="skye-modal-divider"></div>
+            
+            <div class="skye-modal-message font-primary">
+              <p class="modal-paragraph">¡Ayuda a nuestro pequeño cachorro a cumplir sus sueños dejando tu regalo en efectivo en la torre de control! 👮‍♂️💙</p>
+              <div class="paragraph-spacer"></div>
+              <p class="modal-paragraph">En la entrada encontrarás un buzón especial para que puedas dejar tu detalle en forma cómoda. ¡Gracias por ser parte de su tripulación! 🚒🔥</p>
+            </div>
+          </div>
+          
+          <div class="skye-modal-footer">
+            <button class="skye-modal-action-btn font-display" (click)="closeSkyeModal()">¡ENTENDIDO!</button>
+          </div>
+        </div>
+      </div>
     </div>
   `
 })
@@ -205,13 +240,15 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   activePup: 'chase' | 'marshall' | 'rubble' | 'rocky' | 'skye' | null = null;
   activeSpeechBubbleText: string = '¡Acepta esta misión para divertirte! 👮‍♂️💙';
 
+  showSkyeModal: boolean = false;
+
   pupSpeeches: { [key: string]: { text: string; visible: boolean } } = {
     chase: {
-      text: '¡Tu regalo en efectivo es bienvenido en la torre! 👮‍♂️💙',
+      text: '¡Vamos a divertirnos! 🎉🐶',
       visible: true
     },
     marshall: {
-      text: '¡En la entrada verás un buzón especial para sobres! 🚒🔥',
+      text: '¡Listo para jugar! 🚒🔥',
       visible: true
     },
     rubble: {
@@ -223,7 +260,7 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
       visible: false
     },
     skye: {
-      text: '¡Este cachorro va a volar! 🚁💖',
+      text: '¿No sabes qué regalar?',
       visible: false
     }
   };
@@ -362,11 +399,12 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
       loop: true
     });
 
-    // Auto-display Chase's and Marshall's speech bubbles after 2 seconds
+    // Auto-display Chase's, Marshall's, and Skye's speech bubbles after 2 seconds
     setTimeout(() => {
       if (this.state === 'briefing') {
         this.pupSpeeches['chase'].visible = true;
         this.pupSpeeches['marshall'].visible = true;
+        this.pupSpeeches['skye'].visible = true;
         this.audioService.playBark();
       }
     }, 2000);
@@ -476,6 +514,17 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
         }
       });
     }
+  }
+
+  openSkyeModal(event: Event): void {
+    event.stopPropagation();
+    this.audioService.playBeep();
+    this.showSkyeModal = true;
+  }
+
+  closeSkyeModal(): void {
+    this.audioService.playBeep();
+    this.showSkyeModal = false;
   }
 
   openGoogleMaps(): void {
