@@ -470,9 +470,12 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   triggerPupSpeech(pup: 'chase' | 'marshall' | 'rubble' | 'rocky' | 'skye', text: string): void {
-    this.audioService.playPupSound(pup);
+    const willBeVisible = !this.pupSpeeches[pup].visible;
+    if (willBeVisible) {
+      this.audioService.playPupSound(pup);
+    }
     this.pupSpeeches[pup].text = text;
-    this.pupSpeeches[pup].visible = !this.pupSpeeches[pup].visible;
+    this.pupSpeeches[pup].visible = willBeVisible;
 
     // Bounce clicked puppy using anime.js
     const targetClass = `.character-${pup}`;
