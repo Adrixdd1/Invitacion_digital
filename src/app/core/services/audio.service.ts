@@ -156,7 +156,7 @@ export class AudioService {
       } catch (e) {}
     }
 
-    const audio = new Audio(`assets/sounds/${pup}.mp3`);
+    const audio = new Audio(`assets/sounds/${pup}.wav`);
     this.activePupAudios[pup] = audio;
 
     audio.play().catch(err => {
