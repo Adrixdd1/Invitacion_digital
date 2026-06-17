@@ -25,6 +25,12 @@ import { AudioService } from '../../../../core/services/audio.service';
     </div>
 
     <div class="entrance-container">
+      <!-- Fullscreen Toggle Button (Mobile Friendly) -->
+      <button class="fullscreen-toggle-btn" (click)="toggleFullscreen()" aria-label="Pantalla completa">
+        <i class="fa-solid" [class.fa-expand]="!isFullscreen" [class.fa-compress]="isFullscreen"></i>
+        <span class="btn-tooltip">Pantalla Completa</span>
+      </button>
+
       <!-- Friendly Call Banner -->
       <div class="incoming-call-banner" *ngIf="state === 'calling'">
         <h2 class="call-title">🚨 ¡MISION ENTRANTE! 🚨</h2>
@@ -237,6 +243,8 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   state: 'calling' | 'briefing' = 'calling';
   isRinging: boolean = false;
 
+  isFullscreen: boolean = false;
+
   activePup: 'chase' | 'marshall' | 'rubble' | 'rocky' | 'skye' | null = null;
   activeSpeechBubbleText: string = '¡Acepta esta misión para divertirte! 👮‍♂️💙';
 
@@ -421,16 +429,16 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
 
     this.dragStartX = clientX - this.pupPositions[pup].x;
     this.dragStartY = clientY - this.pupPositions[pup].y;
-
-    if (event.cancelable) {
-      event.preventDefault();
-    }
   }
 
   @HostListener('document:mousemove', ['$event'])
   @HostListener('document:touchmove', ['$event'])
   onDragMove(event: MouseEvent | TouchEvent): void {
     if (!this.isDragging || !this.dragPup) return;
+
+    if (event.cancelable) {
+      event.preventDefault();
+    }
 
     const clientX = 'touches' in event ? event.touches[0].clientX : event.clientX;
     const clientY = 'touches' in event ? event.touches[0].clientY : event.clientY;
@@ -525,6 +533,26 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   closeSkyeModal(): void {
     this.audioService.playBeep();
     this.showSkyeModal = false;
+  }
+
+  toggleFullscreen(): void {
+    this.audioService.playBeep();
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        this.isFullscreen = true;
+      }).catch(err => {
+        console.error('Error enabling fullscreen:', err);
+      });
+    } else {
+      document.exitFullscreen().then(() => {
+        this.isFullscreen = false;
+      });
+    }
+  }
+
+  @HostListener('document:fullscreenchange', ['$event'])
+  onFullscreenChange(): void {
+    this.isFullscreen = !!document.fullscreenElement;
   }
 
   openGoogleMaps(): void {
