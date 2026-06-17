@@ -116,7 +116,7 @@ import { AudioService } from '../../../../core/services/audio.service';
                 
                 <div class="anim-item time-column">
                   <span class="label-custom font-rubik-bold">HORA</span>
-                  <span class="number-custom text-outline-blue">5:00</span>
+                  <span class="number-custom text-outline-blue">3:00</span>
                   <span class="label-custom font-rubik-bold">P.M.</span>
                 </div>
               </main>
