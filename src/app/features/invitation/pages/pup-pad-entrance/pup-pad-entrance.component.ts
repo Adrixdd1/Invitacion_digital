@@ -470,7 +470,7 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   triggerPupSpeech(pup: 'chase' | 'marshall' | 'rubble' | 'rocky' | 'skye', text: string): void {
-    this.audioService.playBark();
+    this.audioService.playPupSound(pup);
     this.pupSpeeches[pup].text = text;
     this.pupSpeeches[pup].visible = !this.pupSpeeches[pup].visible;
 

@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AudioService {
   private audioCtx: AudioContext | null = null;
+  private activePupAudios: { [key: string]: HTMLAudioElement } = {};
 
   constructor() {}
 
@@ -139,6 +140,28 @@ export class AudioService {
       
       osc.start(time);
       osc.stop(time + duration);
+    });
+  }
+
+  /**
+   * Play the custom catchphrase or sound of a pup from the assets folder.
+   * Falls back to playBark() if the audio file fails to load or play.
+   */
+  playPupSound(pup: string): void {
+    // Stop the previous audio of this puppy if it exists and is playing
+    if (this.activePupAudios[pup]) {
+      try {
+        this.activePupAudios[pup].pause();
+        this.activePupAudios[pup].currentTime = 0;
+      } catch (e) {}
+    }
+
+    const audio = new Audio(`assets/sounds/${pup}.mp3`);
+    this.activePupAudios[pup] = audio;
+
+    audio.play().catch(err => {
+      console.warn(`No se pudo jugar el sonido para ${pup}, usando ladridos por defecto.`, err);
+      this.playBark();
     });
   }
 }
