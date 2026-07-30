@@ -106,36 +106,50 @@ import { AudioService } from '../../../../core/services/audio.service';
                 <div class="horizontal-divider-blue"></div>
               </header>
 
-              <!-- Grid Details (Date & Time) -->
-              <main class="grid-details">
-                <div class="anim-item date-column">
-                  <span class="label-custom font-rubik-bold">SÁBADO</span>
-                  <span class="number-custom text-outline-blue">29</span>
-                  <span class="label-custom font-rubik-bold">AGOSTO</span>
+              <!-- Date Row -->
+              <div class="anim-item date-row">
+                <span class="label-custom font-rubik-bold">SÁBADO</span>
+                <span class="number-custom text-outline-blue">29</span>
+                <span class="label-custom font-rubik-bold">DE AGOSTO</span>
+              </div>
+
+              <div class="horizontal-divider-blue"></div>
+
+              <!-- Two Event Columns: Misa + Recepción -->
+              <main class="event-columns">
+                <!-- Left Column: Misa -->
+                <div class="anim-item event-column" (click)="openParroquiaMaps()">
+                  <span class="event-label misa-label">MISA: ACCIÓN DE GRACIAS</span>
+                  <span class="event-sublabel">HORA</span>
+                  <span class="event-time text-outline-blue">12:00</span>
+                  <div class="event-venue-row">
+                    <i class="fa-solid fa-location-dot event-pin"></i>
+                    <div class="event-venue-text">
+                      <span class="event-venue">PARROQUIA DE LA ASUNCIÓN</span>
+                      <span class="event-address">Esq. Ferrocarril y Benito Juárez</span>
+                    </div>
+                  </div>
                 </div>
-                
-                <div class="anim-item time-column">
-                  <span class="label-custom font-rubik-bold">HORA</span>
-                  <span class="number-custom text-outline-blue">3:30</span>
-                  <span class="label-custom font-rubik-bold">P.M.</span>
+
+                <!-- Paw Divider -->
+                <div class="paw-divider anim-item">
+                  <i class="fa-solid fa-paw"></i>
+                </div>
+
+                <!-- Right Column: Recepción -->
+                <div class="anim-item event-column" (click)="openGoogleMaps()">
+                  <span class="event-label recepcion-label">RECEPCIÓN</span>
+                  <span class="event-sublabel">HORA</span>
+                  <span class="event-time text-outline-blue">4:00</span>
+                  <div class="event-venue-row">
+                    <i class="fa-solid fa-location-dot event-pin"></i>
+                    <div class="event-venue-text">
+                      <span class="event-venue">LA QUINTA "DOÑA CARMEN"</span>
+                      <span class="event-address">Ctra. Loma Bonita - Desparramadero</span>
+                    </div>
+                  </div>
                 </div>
               </main>
-
-              <!-- Location Section with Google Maps Link -->
-              <section class="anim-item location-section" (click)="openGoogleMaps()">
-                <div class="location-pin-wrapper">
-                  <svg viewBox="0 0 100 100" class="location-pin-svg">
-                    <circle cx="50" cy="40" r="30" fill="#1b2a47" />
-                    <path d="M 50,10 C 33,10 20,23 20,40 C 20,62 50,90 50,90 C 50,90 80,62 80,40 C 80,23 67,10 50,10 Z" fill="#002d62" />
-                    <circle cx="50" cy="40" r="10" fill="#ffffff" />
-                  </svg>
-                </div>
-                <div class="location-text-wrapper">
-                  <h3 class="venue-name-custom">LA QUINTA "DOÑA CARMEN"</h3>
-                  <p class="venue-address-custom font-rubik-bold">Carretera Loma Bonita - Desparramadero</p>
-                  <span class="maps-indicator"><i class="fa-solid fa-map-location-dot"></i> TOCAR PARA VER UBICACIÓN</span>
-                </div>
-              </section>
 
               <!-- Draggable Floating Pups -->
               <!-- Skye in the air (top right) -->
@@ -559,6 +573,12 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   openGoogleMaps(): void {
     this.audioService.playBeep();
     const addressUrl = 'https://www.google.com/maps/search/?api=1&query=La+Quinta+Dona+Carmen+Loma+Bonita+-+Desparramadero';
+    window.open(addressUrl, '_blank');
+  }
+
+  openParroquiaMaps(): void {
+    this.audioService.playBeep();
+    const addressUrl = 'https://www.google.com/maps/search/?api=1&query=Parroquia+de+la+Asuncion+Ferrocarril+y+Benito+Juarez';
     window.open(addressUrl, '_blank');
   }
 

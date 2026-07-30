@@ -584,21 +584,14 @@ body, html {
   margin: 8px 0;
 }
 
-/* Date & Time Grid */
-.grid-details {
+/* Date Row (centered) */
+.date-row {
   display: flex;
-  justify-content: space-around;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
-  max-width: 480px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.date-column, .time-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 120px;
+  margin-bottom: 2px;
 }
 
 .label-custom {
@@ -630,75 +623,149 @@ body, html {
     2.5px 2.5px 0px #ffffff;
 }
 
-/* Location Card with Maps link */
-.location-section {
+/* ========== Two-Column Event Layout ========== */
+.event-columns {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 15px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 3px dashed #1c2d5a;
-  border-radius: 20px;
-  padding: 10px 22px;
-  width: 90%;
-  max-width: 540px;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  transition: var(--transition-smooth);
-  margin-top: 5px;
-  margin-bottom: 10px;
-  backdrop-filter: blur(5px);
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 2px;
+  margin-bottom: 5px;
 }
 
-.location-section:hover {
-  background: rgba(255, 255, 255, 0.75);
+.event-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 16px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.event-column:hover {
+  background: rgba(255, 255, 255, 0.15);
   transform: scale(1.03);
 }
 
-.location-pin-wrapper {
-  width: 45px;
-  height: 45px;
+.event-column:active {
+  transform: scale(0.97);
 }
 
-.location-pin-svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+/* Label badges */
+.event-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 2px;
 }
 
-.location-text-wrapper {
+.misa-label {
+  background-color: var(--paw-dark-blue);
+  box-shadow: 0 2px 6px rgba(0, 45, 98, 0.5);
+}
+
+.recepcion-label {
+  background-color: var(--paw-blue);
+  box-shadow: 0 2px 6px rgba(0, 87, 183, 0.4);
+}
+
+.event-sublabel {
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #1c2d5a;
+  letter-spacing: 1.5px;
+  margin-top: 2px;
+  text-shadow: 
+    1.5px 1.5px 0px #ffffff,
+    -1.5px -1.5px 0px #ffffff,
+    1.5px -1.5px 0px #ffffff,
+    -1.5px 1.5px 0px #ffffff;
+}
+
+.event-time {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Venue info below time */
+.event-venue-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.event-pin {
+  color: var(--paw-dark-blue);
+  font-size: 0.9rem;
+  margin-top: 2px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+.event-venue-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
-.venue-name-custom {
+.event-venue {
   font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 800;
+  font-size: 0.65rem;
+  font-weight: 700;
   color: #1c2d5a;
   line-height: 1.2;
+  text-shadow: 
+    1.5px 1.5px 0px #ffffff,
+    -1.5px -1.5px 0px #ffffff,
+    1.5px -1.5px 0px #ffffff,
+    -1.5px 1.5px 0px #ffffff;
 }
 
-.venue-address-custom {
+.event-address {
   font-family: var(--font-primary);
-  font-size: 0.85rem;
+  font-size: 0.55rem;
+  font-weight: 600;
   color: #1c2d5a;
+  line-height: 1.3;
+  text-shadow: 
+    1.5px 1.5px 0px #ffffff,
+    -1.5px -1.5px 0px #ffffff,
+    1.5px -1.5px 0px #ffffff,
+    -1.5px 1.5px 0px #ffffff;
 }
 
-.maps-indicator {
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--paw-red);
-  letter-spacing: 1px;
-  margin-top: 4px;
-  animation: pulseMapsText 1.5s infinite alternate;
+/* Paw Divider between columns */
+.paw-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  align-self: center;
 }
 
-@keyframes pulseMapsText {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
+.paw-divider i {
+  font-size: 1.6rem;
+  color: var(--paw-dark-blue);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  animation: pawBounce 2.5s infinite ease-in-out;
+}
+
+@keyframes pawBounce {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.15) rotate(-8deg); }
 }
 
 /* Drag and Drop Puppies */
@@ -858,23 +925,31 @@ body, html {
   .label-custom {
     font-size: 0.95rem;
   }
-  .location-section {
-    padding: 6px 12px;
-    width: 95%;
-    border-width: 2px;
+  /* Event columns responsive */
+  .event-time {
+    font-size: 2.2rem;
   }
-  .venue-name-custom {
-    font-size: 1rem;
+  .event-label {
+    font-size: 0.6rem;
+    padding: 2px 7px;
   }
-  .venue-address-custom {
-    font-size: 0.75rem;
+  .event-sublabel {
+    font-size: 0.6rem;
   }
-  .maps-indicator {
-    font-size: 0.65rem;
+  .event-venue {
+    font-size: 0.55rem;
   }
-  .location-pin-wrapper {
-    width: 32px;
-    height: 32px;
+  .event-address {
+    font-size: 0.48rem;
+  }
+  .event-pin {
+    font-size: 0.7rem;
+  }
+  .paw-divider i {
+    font-size: 1.2rem;
+  }
+  .date-row .number-custom {
+    font-size: 2.8rem;
   }
   .skye-wrapper {
     width: 75px;
@@ -933,6 +1008,24 @@ body, html {
   }
   .label-custom {
     font-size: 0.95rem;
+  }
+  .event-time {
+    font-size: 2.2rem;
+  }
+  .event-label {
+    font-size: 0.6rem;
+  }
+  .event-sublabel {
+    font-size: 0.55rem;
+  }
+  .event-venue {
+    font-size: 0.55rem;
+  }
+  .event-address {
+    font-size: 0.48rem;
+  }
+  .paw-divider i {
+    font-size: 1.2rem;
   }
   .skye-wrapper {
     width: 85px;
