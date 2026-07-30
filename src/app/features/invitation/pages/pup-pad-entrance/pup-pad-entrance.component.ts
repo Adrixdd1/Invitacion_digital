@@ -41,17 +41,38 @@ import { AudioService } from '../../../../core/services/audio.service';
       <div class="pup-pad-frame" 
            [class.vibrating]="isRinging && state === 'calling'">
         
-        <!-- Physical Red Bezel Corners -->
-        <div class="pad-corner corner-tl"></div>
-        <div class="pad-corner corner-br"></div>
-        
-        <!-- Right side controller circle -->
-        <div class="pad-controller-right">
-          <div class="inner-controller-btn"></div>
+        <!-- Top & Bottom Textured Bumper Grips (4 protuberancias estriadas) -->
+        <div class="pad-bumper bumper-top-left">
+          <span class="stripe"></span><span class="stripe"></span><span class="stripe"></span>
+        </div>
+        <div class="pad-bumper bumper-top-right">
+          <span class="stripe"></span><span class="stripe"></span><span class="stripe"></span>
+        </div>
+        <div class="pad-bumper bumper-bottom-left">
+          <span class="stripe"></span><span class="stripe"></span><span class="stripe"></span>
+        </div>
+        <div class="pad-bumper bumper-bottom-right">
+          <span class="stripe"></span><span class="stripe"></span><span class="stripe"></span>
         </div>
 
-        <!-- Inner Screen -->
-        <div class="pup-pad-screen">
+        <!-- Left Accent Stripe (Red Curved Band) with Sky Blue Circular Cutout -->
+        <div class="pad-accent-side accent-left">
+          <div class="circle-cutout cutout-left">
+            <div class="cutout-bg sky-bg"></div>
+          </div>
+        </div>
+
+        <!-- Right Accent Stripe (Light Blue Curved Band) with Silver Circular Cutout -->
+        <div class="pad-accent-side accent-right">
+          <div class="circle-cutout cutout-right">
+            <div class="cutout-bg silver-bg"></div>
+          </div>
+        </div>
+
+        <!-- Silver-Gray Inner Bezel -->
+        <div class="pup-pad-silver-bezel">
+          <!-- Inner Screen -->
+          <div class="pup-pad-screen">
           
           <!-- State 1: Incoming Call Screen -->
           <div class="calling-screen-content" *ngIf="state === 'calling'" (click)="onAnswerCall()">
@@ -221,6 +242,7 @@ import { AudioService } from '../../../../core/services/audio.service';
             </div>
           </div>
         </div>
+      </div>
       </div>
       
       <!-- Skye's Gift Modal -->
