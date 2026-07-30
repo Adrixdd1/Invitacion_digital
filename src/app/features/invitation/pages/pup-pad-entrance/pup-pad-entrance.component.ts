@@ -178,18 +178,11 @@ import { AudioService } from '../../../../core/services/audio.service';
                    [style.transform]="'translate(' + pupPositions['skye'].x + 'px, ' + pupPositions['skye'].y + 'px)'"
                    (mousedown)="onDragStart($event, 'skye')"
                    (touchstart)="onDragStart($event, 'skye')">
-                <div class="speech-bubble-pup skye-bubble clickable-bubble" 
-                     [class.visible]="pupSpeeches['skye'].visible"
-                     (click)="openSkyeModal($event)">
+                <div class="speech-bubble-pup" [class.visible]="pupSpeeches['skye'].visible">
                   <div class="bubble-tail"></div>
-                  <p>
-                    {{ pupSpeeches['skye'].text }}
-                    <span class="gift-icon-badge">
-                      <i class="fa-solid fa-gift"></i>
-                    </span>
-                  </p>
+                  <p>{{ pupSpeeches['skye'].text }}</p>
                 </div>
-                <img src="assets/skye.png" class="character-pup character-skye" alt="Skye Paw Patrol" (click)="onPupClick('skye', '¿No sabes qué regalar?')">
+                <img src="assets/skye.png" class="character-pup character-skye" alt="Skye Paw Patrol" (click)="onPupClick('skye', '¡A volar por el cumple de Farid! 🚁💖')">
               </div>
 
               <!-- Chase -->
@@ -302,7 +295,7 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
       visible: false
     },
     skye: {
-      text: '¿No sabes qué regalar?',
+      text: '¡A volar por el cumple de Farid! 🚁💖',
       visible: false
     }
   };

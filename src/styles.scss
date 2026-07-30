@@ -885,37 +885,47 @@ body, html {
   z-index: 100;
 }
 
-/* Air Skye positioning */
-.skye-wrapper {
-  right: 5%;
-  top: 130px;
-  width: 120px;
-  transform-origin: center center;
-}
-
-/* Bottom Crew Pups positioning */
+/* /* Bottom Row 5-Puppies Crew Positioning */
 .chase-wrapper {
-  left: 6%;
-  bottom: 25px;
-  width: 130px;
+  left: 2%;
+  bottom: 8px;
+  top: auto;
+  right: auto;
+  width: clamp(60px, 9.5vw, 95px);
 }
 
 .marshall-wrapper {
   left: 23%;
-  bottom: 15px;
-  width: 110px;
+  bottom: 8px;
+  top: auto;
+  right: auto;
+  width: clamp(55px, 8.5vw, 85px);
 }
 
 .rubble-wrapper {
-  right: 23%;
-  bottom: 15px;
-  width: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 8px;
+  top: auto;
+  right: auto;
+  width: clamp(55px, 8.5vw, 85px);
 }
 
 .rocky-wrapper {
-  right: 6%;
-  bottom: 15px;
-  width: 105px;
+  right: 23%;
+  bottom: 8px;
+  top: auto;
+  left: auto;
+  width: clamp(55px, 8.5vw, 85px);
+}
+
+.skye-wrapper {
+  right: 2%;
+  bottom: 8px;
+  top: auto;
+  left: auto;
+  width: clamp(60px, 9.5vw, 95px);
+  transform-origin: center center;
 }
 
 .character-pup {
@@ -932,44 +942,54 @@ body, html {
   transform-origin: center center;
 }
 
-/* Speech Bubble Styling directly above heads */
+/* Speech Bubble Base Styling (Above Pup Heads) */
 .speech-bubble-pup {
   position: absolute;
-  top: -85px;
+  bottom: 105%;
+  top: auto;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transform-origin: bottom center;
   background: #ffffff;
   color: var(--paw-red);
-  border-radius: 18px;
-  padding: 10px 14px;
+  border-radius: 16px;
+  padding: 6px 10px;
   text-align: center;
-  width: 165px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  width: clamp(110px, 16vw, 145px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.35);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.78rem;
-  border: 3px solid var(--paw-yellow);
+  font-size: clamp(0.62rem, 1.1vw, 0.74rem);
+  border: 2.5px solid var(--paw-yellow);
   opacity: 0;
-  transform: scale(0);
-  transform-origin: bottom center;
   transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: none;
-  z-index: 25;
-}
-
-/* Special Skye Bubble underneath her */
-.skye-bubble {
-  top: 110%; 
-  transform-origin: top center;
-}
-.skye-bubble .bubble-tail {
-  top: -11px;
-  bottom: auto;
-  border-top: none;
-  border-bottom: 12px solid var(--paw-yellow);
+  z-index: 30;
 }
 
 .speech-bubble-pup.visible {
   opacity: 1;
-  transform: scale(1);
+  transform: translateX(-50%) scale(1);
+}
+
+/* Specific offsets for corner pups so bubbles stay inside viewport */
+.chase-wrapper .speech-bubble-pup {
+  left: 20%;
+  transform: translateX(0) scale(0);
+  transform-origin: bottom left;
+}
+.chase-wrapper .speech-bubble-pup.visible {
+  transform: translateX(0) scale(1);
+}
+
+.skye-wrapper .speech-bubble-pup {
+  left: auto;
+  right: 20%;
+  transform: translateX(0) scale(0);
+  transform-origin: bottom right;
+}
+.skye-wrapper .speech-bubble-pup.visible {
+  transform: translateX(0) scale(1);
 }
 
 .speech-bubble-pup p {
@@ -981,13 +1001,15 @@ body, html {
 .speech-bubble-pup .bubble-tail {
   position: absolute;
   bottom: -11px;
+  top: auto;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 12px solid var(--paw-yellow);
+  border-top: 11px solid var(--paw-yellow);
+  border-bottom: none;
 }
 
 /* RESPONSIVE & MEDIA QUERY ADJUSTMENTS */
@@ -1084,40 +1106,17 @@ body, html {
   .date-row .number-custom {
     font-size: 2.8rem;
   }
-  .skye-wrapper {
-    width: 75px;
-    top: 120px;
-    right: 2%;
+  .skye-wrapper, .chase-wrapper {
+    width: 60px;
+    top: 6px;
   }
-  .chase-wrapper {
-    width: 85px;
-    bottom: 12px;
-    left: 2%;
-  }
-  .marshall-wrapper {
-    width: 75px;
-    bottom: 8px;
-    left: 20%;
+  .marshall-wrapper, .rocky-wrapper {
+    width: 52px;
+    bottom: 4px;
   }
   .rubble-wrapper {
-    width: 75px;
-    bottom: 8px;
-    right: 20%;
-  }
-  .rocky-wrapper {
-    width: 70px;
-    bottom: 8px;
-    right: 2%;
-  }
-  .speech-bubble-pup {
-    top: -65px;
-    width: 120px;
-    font-size: 0.65rem;
-    padding: 6px 8px;
-    border-width: 2px;
-  }
-  .skye-bubble {
-    top: 100%;
+    width: 48px;
+    bottom: 4px;
   }
 }
 
@@ -1165,34 +1164,10 @@ body, html {
   .paw-divider i {
     font-size: 1.2rem;
   }
-  .skye-wrapper {
-    width: 85px;
-    top: 110px;
-  }
-  .chase-wrapper {
-    width: 95px;
-    bottom: 20px;
-  }
-  .marshall-wrapper {
-    width: 80px;
-    bottom: 12px;
-  }
-  .rubble-wrapper {
-    width: 80px;
-    bottom: 12px;
-  }
-  .rocky-wrapper {
-    width: 75px;
-    bottom: 12px;
-  }
-  .speech-bubble-pup {
-    top: -65px;
-    width: 130px;
-    font-size: 0.65rem;
-    padding: 6px 8px;
-  }
-  .skye-bubble {
-    top: 100%;
+  .skye-wrapper, .chase-wrapper, .marshall-wrapper, .rocky-wrapper, .rubble-wrapper {
+    width: 48px;
+    bottom: 4px;
+    top: auto;
   }
 }
 
