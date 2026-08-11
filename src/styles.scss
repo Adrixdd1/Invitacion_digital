@@ -972,25 +972,6 @@ body, html {
   transform: translateX(-50%) scale(1);
 }
 
-/* Specific offsets for corner pups so bubbles stay inside viewport */
-.chase-wrapper .speech-bubble-pup {
-  left: 20%;
-  transform: translateX(0) scale(0);
-  transform-origin: bottom left;
-}
-.chase-wrapper .speech-bubble-pup.visible {
-  transform: translateX(0) scale(1);
-}
-
-.skye-wrapper .speech-bubble-pup {
-  left: auto;
-  right: 20%;
-  transform: translateX(0) scale(0);
-  transform-origin: bottom right;
-}
-.skye-wrapper .speech-bubble-pup.visible {
-  transform: translateX(0) scale(1);
-}
 
 .speech-bubble-pup p {
   color: var(--paw-red);
@@ -1108,7 +1089,8 @@ body, html {
   }
   .skye-wrapper, .chase-wrapper {
     width: 60px;
-    top: 6px;
+    bottom: 4px;
+    top: auto;
   }
   .marshall-wrapper, .rocky-wrapper {
     width: 52px;

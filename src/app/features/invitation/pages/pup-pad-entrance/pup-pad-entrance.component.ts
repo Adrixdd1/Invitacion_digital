@@ -280,11 +280,11 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
   pupSpeeches: { [key: string]: { text: string; visible: boolean } } = {
     chase: {
       text: '¡Vamos a divertirnos! 🎉🐶',
-      visible: true
+      visible: false
     },
     marshall: {
       text: '¡Listo para jugar! 🚒🔥',
-      visible: true
+      visible: false
     },
     rubble: {
       text: '¡Rubble a toda marcha! 🛠️💛',
@@ -433,16 +433,6 @@ export class PupPadEntranceComponent implements OnInit, AfterViewInit, OnDestroy
       duration: 3200,
       loop: true
     });
-
-    // Auto-display Chase's, Marshall's, and Skye's speech bubbles after 2 seconds
-    setTimeout(() => {
-      if (this.state === 'briefing') {
-        this.pupSpeeches['chase'].visible = true;
-        this.pupSpeeches['marshall'].visible = true;
-        this.pupSpeeches['skye'].visible = true;
-        this.audioService.playBark();
-      }
-    }, 2000);
   }
 
   // --- INTERACTIVE DRAG AND DROP ---
