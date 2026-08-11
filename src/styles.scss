@@ -700,12 +700,16 @@ body, html {
   font-weight: 800;
   line-height: 1;
   margin: -2px 0;
+  text-shadow: 
+    -1.5px -1.5px 0px #ffffff,  
+    1.5px -1.5px 0px #ffffff,
+    -1.5px 1.5px 0px #ffffff,
+    1.5px 1.5px 0px #ffffff;
 }
 
 .text-outline-blue {
   color: var(--paw-blue);
   text-shadow: 
-    4px 4px 0px #002d62,
     -1.5px -1.5px 0px #ffffff,  
     1.5px -1.5px 0px #ffffff,
     -1.5px 1.5px 0px #ffffff,
