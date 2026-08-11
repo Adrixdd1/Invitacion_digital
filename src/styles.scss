@@ -797,6 +797,11 @@ body, html {
   font-weight: 800;
   line-height: 1;
   margin: 2px 0;
+  text-shadow: 
+    -1.5px -1.5px 0px #ffffff,  
+    1.5px -1.5px 0px #ffffff,
+    -1.5px 1.5px 0px #ffffff,
+    1.5px 1.5px 0px #ffffff;
 }
 
 /* Venue info below time */
